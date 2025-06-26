@@ -25,18 +25,18 @@ Getting Started
 1.  Clone the project
     bash
     Copy
-    Edit
-    git clone https://github.com/adrienkym/student-attendance-tracker.git
+    
+    git clone https://github.com/Adrienkym/student-attendance-tracker.git
     cd student-attendance-tracker
 2.  Install JSON Server
     bash
     Copy
-    Edit
+    
     npm install -g json-server
 3.  Start the server
     bash
     Copy
-    Edit
+    
     json-server --watch db.json
     Make sure db.json is in the root folder. Your mock API will run at:
     http://localhost:3000/students
@@ -57,10 +57,9 @@ Getting Started
     }
 
          Future Improvements
+    
+ Data validation for unique IDs
 
-    Data validation for unique IDs
-
-Export attendance summary as CSV
 
 Add timestamp for attendance logs
 
