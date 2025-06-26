@@ -26,7 +26,7 @@ Getting Started
     bash
     Copy
     
-    git clone https://github.com/Adrienkym/student-attendance-tracker.git
+    git clone https://github.com/Adrienkym/phase-1-final-project.git
     cd student-attendance-tracker
 2.  Install JSON Server
     bash
