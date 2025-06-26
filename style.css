@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  background-color: #f2f2f2; /* Optional */
+  color: black;
+  font-family: sans-serif;
+}
+
+#overlay {
+  background-color: black;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+#overlay h1 {
+  color: #f2f2f2;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#student-list {
+  list-style-type: none;
+  color: #f2f2f2;
+  justify-content: space-between;
+  padding: 0;
+  margin: 1rem;
+  font-size: larger;
+}
