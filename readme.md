@@ -44,7 +44,7 @@ Backend: JSON Server (Mock API)
 
     json-server --watch db.json
     Make sure db.json is in the root folder. Your mock API will run at:
-    https://json-server-rql1.onrender.com
+    https://json-server-rql1.onrender.com/students
 
 5.  Open the app
     Open index.html in your browser.
