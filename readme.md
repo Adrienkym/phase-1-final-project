@@ -29,13 +29,15 @@ Getting Started
     Copy
     
     git clone git@github.com:Adrienkym/phase-1-final-project.git
+    
+
     cd phase-1-final-project
-3.  Install JSON Server
+4.  Install JSON Server
     bash
     Copy
     
     npm install -g json-server
-4.  Start the server
+5.  Start the server
     bash
     Copy
     
@@ -43,7 +45,7 @@ Getting Started
     Make sure db.json is in the root folder. Your mock API will run at:
     http://localhost:3000/students
 
-5.  Open the app
+6.  Open the app
     Open index.html in your browser.
 
         Sample Data (in db.json)
