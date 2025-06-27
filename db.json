@@ -1,24 +1,5 @@
 {
-  "students": [
-    {
-      "name": "jet",
-      "id": "stud123",
-      "status": "absent"
-    },
-    {
-      "name": "MARK adrian",
-      "id": "stud124",
-      "status": "present"
-    },
-    {
-      "name": "jester",
-      "id": "stud442",
-      "status": "present"
-    },
-    {
-      "name": "cheser",
-      "id": "1234",
-      "status": "absent"
-    }
-  ]
+  "students": []
 }
+
+// server needs to be running for the code to work

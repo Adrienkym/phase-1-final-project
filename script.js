@@ -102,7 +102,7 @@ async function updateStudentStatus(id, status) {
 // Function to calculate attendance summary
 function calculateAttendanceSummary() {
   const totalStudents = students.length;
-  const presentCount = students.filter((s) => s.status === "present").length;
+  const presentCount = students.filter((s) => s.status === "present").length; // Count the number of students present
   const absentCount = totalStudents - presentCount;
 
   const summaryDiv = document.getElementById("atttendance-summary");
@@ -123,23 +123,23 @@ function renderStudentList() {
     li.className =
       "list-group-item d-flex justify-content-between align-items-center";
 
-    const info = document.createElement("span");
-    info.className = "student-info";
+    const info = document.createElement("span"); // Create a span for student info
+    info.className = "student-info"; // Add a class for styling
     info.textContent = `${student.name} ${student.id}`;
 
     const badge = document.createElement("span");
     badge.className = `badge me-2 ${
-      student.status === "present" ? "badge-present" : "badge-absent"
+      student.status === "present" ? "badge-present" : "badge-absent" // Add a class based on the status like present or absent
     }`;
-    badge.textContent = student.status === "present" ? "Present" : "Absent";
+    badge.textContent = student.status === "present" ? "Present" : "Absent"; // checks if the stud is present if true the texxt is changed to present if not it is changed to Absent
 
     const btnGroup = document.createElement("div");
 
     const toggleBtn = document.createElement("button");
     toggleBtn.className = "btn btn-sm btn-outline-success me-1";
     toggleBtn.textContent =
-      student.status === "present" ? "Mark Absent" : "Mark Present";
-    toggleBtn.onclick = () => updateStudentStatus(student.id, student.status);
+      student.status === "present" ? "Mark Absent" : "Mark Present"; // Set the button text based on the status
+    toggleBtn.onclick = () => updateStudentStatus(student.id, student.status); // when the button is clicked, it will call the updateStudentStatus function with the student's ID and current status
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "btn btn-sm btn-outline-danger";
