@@ -22,18 +22,20 @@ Backend: JSON Server (Mock API)
 
 Getting Started
 
-1.  Clone the project
+1.  Folk this repo
+
+2.  Clone the project in your terminal
     bash
     Copy
     
-    git clone https://github.com/Adrienkym/phase-1-final-project.git
+    git clone git@github.com:Adrienkym/phase-1-final-project.git
     cd phase-1-final-project
-2.  Install JSON Server
+3.  Install JSON Server
     bash
     Copy
     
     npm install -g json-server
-3.  Start the server
+4.  Start the server
     bash
     Copy
     
@@ -41,7 +43,7 @@ Getting Started
     Make sure db.json is in the root folder. Your mock API will run at:
     http://localhost:3000/students
 
-4.  Open the app
+5.  Open the app
     Open index.html in your browser.
 
         Sample Data (in db.json)
