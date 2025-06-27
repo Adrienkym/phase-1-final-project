@@ -20,7 +20,7 @@ Frontend: HTML, CSS (Bootstrap), JavaScript
 
 Backend: JSON Server (Mock API)
 
-Getting Started
+    Getting Started
 
 1.  Folk this repo
 
