@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/students";
+const API_URL = "https://json-server-rql1.onrender.com";
 
 //get the elements
 const studentList = document.getElementById("student-list");
