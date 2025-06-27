@@ -1,5 +1,9 @@
 {
-  "students": []
+  "students": [
+    {
+      "name": "n",
+      "id": "stud123",
+      "status": "present"
+    }
+  ]
 }
-
-// server needs to be running for the code to work
