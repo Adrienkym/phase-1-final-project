@@ -27,7 +27,7 @@ Getting Started
     Copy
     
     git clone https://github.com/Adrienkym/phase-1-final-project.git
-    cd student-attendance-tracker
+    cd phase-1-final-project
 2.  Install JSON Server
     bash
     Copy
