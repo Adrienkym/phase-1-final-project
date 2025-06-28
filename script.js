@@ -105,7 +105,7 @@ let attendanceChart; // For updating the chart later
 // Function to calculate attendance summary
 function calculateAttendanceSummary() {
   const totalStudents = students.length;
-  const presentCount = students.filter((s) => s.status === "present").length;
+  const presentCount = students.filter((s) => s.status === "present").length; // students.filter() returns an array of students with status "present"
   const absentCount = totalStudents - presentCount;
 
   const summaryDiv = document.getElementById("atttendance-summary");
@@ -140,7 +140,7 @@ function calculateAttendanceSummary() {
   `;
 
   // Create or update attendance chart
-  const ctx = document.getElementById("attendanceChart").getContext("2d");
+  const ctx = document.getElementById("attendanceChart").getContext("2d"); // Get the context of the canvas for the chart
 
   const chartData = {
     labels: ["Present", "Absent"],
@@ -150,23 +150,26 @@ function calculateAttendanceSummary() {
         data: [presentCount, absentCount],
         backgroundColor: ["#198754", "#dc3545"],
         borderColor: ["#198754", "#dc3545"],
-        borderWidth: 1,
+        borderWidth: 1, // Set the border width for the chart
       },
     ],
   };
 
   if (attendanceChart) {
-    attendanceChart.data = chartData;
-    attendanceChart.update();
+    attendanceChart.data = chartData; // Update the existing chart data
+    attendanceChart.update(); // Update the existing chart with new data
   } else {
     attendanceChart = new Chart(ctx, {
-      type: "doughnut",
+      // Create a new chart instance
+      type: "doughnut", // Use doughnut chart type
       data: chartData,
       options: {
-        responsive: true,
+        responsive: true, // Make the chart responsive
         plugins: {
+          // Configure plugins for the chart
           legend: {
-            position: "bottom",
+            //
+            position: "bottom", // Position the legend at the bottom
             labels: {
               color: "#fff", // white legend text
               font: {
@@ -189,14 +192,16 @@ searchInput.addEventListener("input", () => {
 
   const filtered = students.filter(
     (student) =>
-      student.name.toLowerCase().includes(query) ||
-      String(student.id).toLowerCase().includes(query)
+      student.name.toLowerCase().includes(query) || // Filter by name or ID
+      String(student.id).toLowerCase().includes(query) // Convert ID to string for comparison
   );
 
   renderStudentList(filtered); // Render the filtered list of students
 });
 
+// Function to render the student list
 function renderStudentList(filteredStudents = students) {
+  // Default to all students if no filter is applied
   studentList.innerHTML = "";
 
   filteredStudents.forEach((student) => {
