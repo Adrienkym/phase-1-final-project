@@ -99,47 +99,128 @@ async function updateStudentStatus(id, status) {
     console.error("Error:", error);
   }
 }
+
+let attendanceChart; // For updating the chart later
+
 // Function to calculate attendance summary
 function calculateAttendanceSummary() {
   const totalStudents = students.length;
-  const presentCount = students.filter((s) => s.status === "present").length; // Count the number of students present
+  const presentCount = students.filter((s) => s.status === "present").length;
   const absentCount = totalStudents - presentCount;
 
   const summaryDiv = document.getElementById("atttendance-summary");
   summaryDiv.innerHTML = `
-    <h5>Attendance Summary</h5>
-    <p>Total Students: ${totalStudents}</p>
-    <p>Present: ${presentCount}</p>
-    <p>Absent: ${absentCount}</p>
+    <div class="col-md-4">
+      <div class="card text-white bg-primary shadow-sm h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Total Students</h5>
+          <h1 class="display-5">${totalStudents}</h1>
+          <i class="bi bi-people-fill fs-2"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success shadow-sm h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Present</h5>
+          <h1 class="display-5">${presentCount}</h1>
+          <i class="bi bi-check-circle-fill fs-2"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-danger shadow-sm h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title">Absent</h5>
+          <h1 class="display-5">${absentCount}</h1>
+          <i class="bi bi-x-circle-fill fs-2"></i>
+        </div>
+      </div>
+    </div>
   `;
+
+  // Create or update attendance chart
+  const ctx = document.getElementById("attendanceChart").getContext("2d");
+
+  const chartData = {
+    labels: ["Present", "Absent"],
+    datasets: [
+      {
+        label: "Attendance",
+        data: [presentCount, absentCount],
+        backgroundColor: ["#198754", "#dc3545"],
+        borderColor: ["#198754", "#dc3545"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  if (attendanceChart) {
+    attendanceChart.data = chartData;
+    attendanceChart.update();
+  } else {
+    attendanceChart = new Chart(ctx, {
+      type: "doughnut",
+      data: chartData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              color: "#fff", // white legend text
+              font: {
+                size: 14,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
 }
 
-// Function to render the student list
-function renderStudentList() {
+//
+
+const searchInput = document.getElementById("search-student");
+
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase();
+
+  const filtered = students.filter(
+    (student) =>
+      student.name.toLowerCase().includes(query) ||
+      String(student.id).toLowerCase().includes(query)
+  );
+
+  renderStudentList(filtered); // Render the filtered list of students
+});
+
+function renderStudentList(filteredStudents = students) {
   studentList.innerHTML = "";
 
-  students.forEach((student) => {
+  filteredStudents.forEach((student) => {
     const li = document.createElement("li");
     li.className =
       "list-group-item d-flex justify-content-between align-items-center";
 
-    const info = document.createElement("span"); // Create a span for student info
-    info.className = "student-info"; // Add a class for styling
-    info.textContent = `${student.name} ${student.id}`;
+    const info = document.createElement("span");
+    info.className = "student-info";
+    info.textContent = `${student.name} (${student.id})`;
 
     const badge = document.createElement("span");
     badge.className = `badge me-2 ${
-      student.status === "present" ? "badge-present" : "badge-absent" // Add a class based on the status like present or absent
+      student.status === "present" ? "badge-present" : "badge-absent"
     }`;
-    badge.textContent = student.status === "present" ? "Present" : "Absent"; // checks if the stud is present if true the texxt is changed to present if not it is changed to Absent
+    badge.textContent = student.status === "present" ? "Present" : "Absent";
 
     const btnGroup = document.createElement("div");
 
     const toggleBtn = document.createElement("button");
-    toggleBtn.className = "btn btn-sm btn-outline-success me-1";
+    toggleBtn.className = "btn btn-sm btn-outline-light me-1";
     toggleBtn.textContent =
-      student.status === "present" ? "Mark Absent" : "Mark Present"; // Set the button text based on the status
-    toggleBtn.onclick = () => updateStudentStatus(student.id, student.status); // when the button is clicked, it will call the updateStudentStatus function with the student's ID and current status
+      student.status === "present" ? "Mark Absent" : "Mark Present";
+    toggleBtn.onclick = () => updateStudentStatus(student.id, student.status);
 
     const deleteBtn = document.createElement("button");
     deleteBtn.className = "btn btn-sm btn-outline-danger";
@@ -150,5 +231,6 @@ function renderStudentList() {
     li.append(info, btnGroup);
     studentList.appendChild(li);
   });
-  calculateAttendanceSummary(); // Calculate and display the attendance summary
+
+  calculateAttendanceSummary();
 }
